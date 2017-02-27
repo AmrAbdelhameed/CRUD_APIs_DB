@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
                // Toast.makeText(MainActivity.this, ParseJSON.names[position] + " " + ParseJSON.emails[position] + " " + ParseJSON.ages[position], Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
+                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
                 String idd = ParseJSON.ids[position];
                 String first = ParseJSON.names[position];
                 String last = ParseJSON.emails[position];

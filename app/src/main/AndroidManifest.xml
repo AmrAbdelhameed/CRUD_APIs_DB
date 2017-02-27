@@ -23,8 +23,8 @@
             android:name=".AddActivity"
             android:label="Add Contact">
         </activity>
-        <activity android:name=".UpdateActivity"
-            android:label="Update Contact">
+        <activity android:name=".DetailsActivity"
+            android:label="Details of Contact">
         </activity>
     </application>
 
