@@ -7,10 +7,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.amr.apisapp.AddActivity">
+    tools:context="com.example.amr.apisapp.UpdateActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTextt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -23,40 +23,40 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editText22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/editTextt"
         android:ems="10"
         android:hint="Last Name"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editText33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/editText22"
         android:ems="10"
         android:hint="Age"
         android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/insert"
+        android:id="@+id/update"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText3"
+        android:layout_below="@+id/editText33"
         android:layout_centerHorizontal="true"
-        android:text="Save Contact"
         android:layout_marginTop="15dp"
         android:background="@drawable/amr"
+        android:text="Update Contact"
         android:textAllCaps="false"
         android:textColor="#ffffff" />
 

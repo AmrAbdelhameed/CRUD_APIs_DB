@@ -7,7 +7,9 @@ import org.json.JSONObject;
 /**
  * Created by Amr on 26/02/2017.
  */
+
 public class ParseJSON {
+
     public static String[] ids;
     public static String[] names;
     public static String[] emails;
@@ -20,7 +22,6 @@ public class ParseJSON {
     public static final String KEY_AGE = "age";
 
     private JSONArray users = null;
-
     private String json;
 
     public ParseJSON(String json) {
@@ -28,6 +29,7 @@ public class ParseJSON {
     }
 
     protected void parseJSON() {
+
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(json);

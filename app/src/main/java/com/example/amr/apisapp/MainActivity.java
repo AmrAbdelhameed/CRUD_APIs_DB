@@ -62,7 +62,23 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
-                Toast.makeText(MainActivity.this, ParseJSON.names[position] + " " + ParseJSON.emails[position] + " " + ParseJSON.ages[position], Toast.LENGTH_SHORT).show();
+               // Toast.makeText(MainActivity.this, ParseJSON.names[position] + " " + ParseJSON.emails[position] + " " + ParseJSON.ages[position], Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
+                String idd = ParseJSON.ids[position];
+                String first = ParseJSON.names[position];
+                String last = ParseJSON.emails[position];
+                String age = ParseJSON.ages[position];
+
+                Bundle b = new Bundle();
+
+                b.putString("ab", idd);
+                b.putString("abab", first);
+                b.putString("ababab",last);
+                b.putString("abababab",age);
+
+                intent.putExtras(b);
+                startActivity(intent);
 
             }
 

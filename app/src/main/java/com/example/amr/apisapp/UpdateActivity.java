@@ -21,31 +21,43 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddActivity extends AppCompatActivity {
+public class UpdateActivity extends AppCompatActivity {
 
     EditText firstname, lastname, age;
-    Button insert;
+    Button update;
     RequestQueue requestQueue;
-    String insertUrl = "http://192.168.1.107/phpinandroid/insertStudent.php";
+    String a, aa, aaa, aaaa;
+    String updateUrl = "http://192.168.1.107/phpinandroid/updateStudent.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
+        setContentView(R.layout.activity_update);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        firstname = (EditText) findViewById(R.id.editText);
-        lastname = (EditText) findViewById(R.id.editText2);
-        age = (EditText) findViewById(R.id.editText3);
-        insert = (Button) findViewById(R.id.insert);
+        firstname = (EditText) findViewById(R.id.editTextt);
+        lastname = (EditText) findViewById(R.id.editText22);
+        age = (EditText) findViewById(R.id.editText33);
+        update = (Button) findViewById(R.id.update);
+
+        Intent in = getIntent();
+        Bundle b = in.getExtras();
+        a = b.getString("ab");
+        aa = b.getString("abab");
+        aaa = b.getString("ababab");
+        aaaa = b.getString("abababab");
+
+        firstname.setText(aa);
+        lastname.setText(aaa);
+        age.setText(aaaa);
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        insert.setOnClickListener(new View.OnClickListener() {
+        update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StringRequest request = new StringRequest(Request.Method.POST, insertUrl, new Response.Listener<String>() {
+                StringRequest request = new StringRequest(Request.Method.POST, updateUrl, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
@@ -61,6 +73,8 @@ public class AddActivity extends AppCompatActivity {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> parameters = new HashMap<String, String>();
+
+                        parameters.put("id", a);
                         parameters.put("firstname", firstname.getText().toString());
                         parameters.put("lastname", lastname.getText().toString());
                         parameters.put("age", age.getText().toString());
@@ -70,13 +84,14 @@ public class AddActivity extends AppCompatActivity {
                 };
                 requestQueue.add(request);
 
-                Toast.makeText(AddActivity.this, "Done", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UpdateActivity.this, "Done", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
             }
 
         });
+
     }
 
     @Override
