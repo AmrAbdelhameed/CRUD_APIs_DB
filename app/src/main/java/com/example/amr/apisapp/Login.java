@@ -1,5 +1,6 @@
 package com.example.amr.apisapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,6 +30,7 @@ public class Login extends AppCompatActivity {
     //boolean variable to check user is logged in or not
     //initially it is false
     private boolean loggedIn = false;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +42,16 @@ public class Login extends AppCompatActivity {
         sign_in_register = (Button) findViewById(R.id.buttonL);
         Reg = (Button) findViewById(R.id.buttonReg);
 
+        dialog = new ProgressDialog(Login.this);
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.setMessage("Loading. Please wait...");
+
         sign_in_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                dialog.show();
                 login();
 
             }
@@ -88,6 +96,7 @@ public class Login extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        dialog.dismiss();
                         //If we are getting success from server
                         if (response.equalsIgnoreCase(Config.LOGIN_SUCCESS)) {
                             //Creating a shared preference

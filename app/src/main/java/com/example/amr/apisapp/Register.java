@@ -1,5 +1,6 @@
 package com.example.amr.apisapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,12 +28,18 @@ public class Register extends AppCompatActivity {
     private Button sign_in_register;
     private String insertUrl = "http://192.168.1.107/phpinandroid/register.php";
     private String checkUrl = "http://192.168.1.107/phpinandroid/check_reg.php";
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        dialog = new ProgressDialog(Register.this);
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.setMessage("Loading. Please wait...");
 
         name = (EditText) findViewById(R.id.txtNameRegistration);
         email = (EditText) findViewById(R.id.txtEmailRegistration);
@@ -43,6 +50,7 @@ public class Register extends AppCompatActivity {
         sign_in_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dialog.show();
                 check_register();
             }
 
@@ -53,6 +61,7 @@ public class Register extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, insertUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                dialog.dismiss();
 
                 System.out.println(response.toString());
 
