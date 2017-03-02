@@ -15,6 +15,8 @@ public class Config {
     //If server response is equal to this that means login is successful
     public static final String LOGIN_SUCCESS = "success";
 
+    public static final String LOGIN_FAILURE = "failure";
+
     //Keys for Sharedpreferences
     //This would be the name of our shared preferences
     public static final String SHARED_PREF_NAME = "myloginapp";
