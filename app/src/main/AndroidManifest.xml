@@ -11,8 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:label="Show ALl Contacts">
+            android:name=".Login"
+            android:label="Login Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,12 +20,20 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Register"
+            android:label="Register Activity">
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="Show ALl Contacts">
+        </activity>
+        <activity
             android:name=".AddActivity"
-            android:label="Add Contact">
-        </activity>
-        <activity android:name=".DetailsActivity"
-            android:label="Details of Contact">
-        </activity>
+            android:label="Add Contact" />
+        <activity
+            android:name=".DetailsActivity"
+            android:label="Details of Contact" />
+
     </application>
 
 </manifest>
