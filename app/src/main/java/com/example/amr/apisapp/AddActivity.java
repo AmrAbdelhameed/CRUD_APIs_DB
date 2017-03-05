@@ -26,6 +26,7 @@ public class AddActivity extends AppCompatActivity {
     EditText firstname, lastname, age;
     Button insert;
     RequestQueue requestQueue;
+    String user_email;
     String insertUrl = "http://192.168.1.107/phpinandroid/insertStudent.php";
 
     @Override
@@ -39,6 +40,10 @@ public class AddActivity extends AppCompatActivity {
         lastname = (EditText) findViewById(R.id.editText2);
         age = (EditText) findViewById(R.id.editText3);
         insert = (Button) findViewById(R.id.insert);
+
+        Intent in = getIntent();
+        Bundle b = in.getExtras();
+        user_email = b.getString("usernamee");
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
@@ -64,6 +69,7 @@ public class AddActivity extends AppCompatActivity {
                         parameters.put("firstname", firstname.getText().toString());
                         parameters.put("lastname", lastname.getText().toString());
                         parameters.put("age", age.getText().toString());
+                        parameters.put("username", user_email);
 
                         return parameters;
                     }

@@ -56,7 +56,7 @@
         android:layout_centerHorizontal="true"
         android:text="Save Contact"
         android:layout_marginTop="15dp"
-        android:background="@drawable/amr"
+        android:background="#000000"
         android:textAllCaps="false"
         android:textColor="#ffffff" />
 

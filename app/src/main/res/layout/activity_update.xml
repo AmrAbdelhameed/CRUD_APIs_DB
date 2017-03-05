@@ -55,7 +55,7 @@
         android:layout_below="@+id/editText33"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:background="@drawable/amr"
+        android:background="#000000"
         android:text="Update Contact"
         android:textAllCaps="false"
         android:textColor="#ffffff" />

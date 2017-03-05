@@ -14,11 +14,16 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String JSON_URL = "http://192.168.1.107/phpinandroid/showStudents.php";
 
     private ListView listView;
+
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         //Fetching email from shared preferences
 
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        String email = sharedPreferences.getString(Config.EMAIL_SHARED_PREF, "Not Available");
+        email = sharedPreferences.getString(Config.EMAIL_SHARED_PREF, "Not Available");
 
         Toast.makeText(MainActivity.this, email, Toast.LENGTH_SHORT).show();
 
@@ -45,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void sendRequest() {
 
-        StringRequest stringRequest = new StringRequest(JSON_URL,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, JSON_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -57,7 +64,16 @@ public class MainActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
                     }
-                });
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parameters = new HashMap<String, String>();
+                parameters.put("username", email);
+
+                return parameters;
+            }
+        };
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
@@ -131,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                         editor.commit();
 
                         //Starting login activity
+
                         Intent intent = new Intent(MainActivity.this, Login.class);
                         startActivity(intent);
                         finish();
@@ -162,7 +179,16 @@ public class MainActivity extends AppCompatActivity {
         int a = item.getItemId();
         if (a == R.id.item1) {
             Intent intent = new Intent(getApplicationContext(), AddActivity.class);
+
+            Bundle b = new Bundle();
+            b.putString("usernamee", email);
+            intent.putExtras(b);
+
             startActivity(intent);
+            return true;
+        }
+        if (a == R.id.item3) {
+            sendRequest();
             return true;
         }
         if (a == R.id.item2) {
