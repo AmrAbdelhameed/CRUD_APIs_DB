@@ -178,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int a = item.getItemId();
         if (a == R.id.item1) {
+
             Intent intent = new Intent(getApplicationContext(), AddActivity.class);
 
             Bundle b = new Bundle();
@@ -185,15 +186,26 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtras(b);
 
             startActivity(intent);
+
             return true;
         }
         if (a == R.id.item3) {
+
             sendRequest();
+
+            return true;
+        }
+        if (a == R.id.item4) {
+
+            Intent intent = new Intent(getApplicationContext(), UpdateProfile.class);
+            startActivity(intent);
+
             return true;
         }
         if (a == R.id.item2) {
-            //calling logout method when the logout button is clicked
+
             logout();
+
             return true;
         }
         return super.onOptionsItemSelected(item);

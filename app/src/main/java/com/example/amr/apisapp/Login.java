@@ -96,20 +96,18 @@ public class Login extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
                         dialog.dismiss();
-                        //If we are getting success from server
+
                         if (response.equalsIgnoreCase(Config.LOGIN_SUCCESS)) {
-                            //Creating a shared preference
+
                             SharedPreferences sharedPreferences = Login.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
-                            //Creating editor to store values to shared preferences
                             SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                            //Adding values to editor
                             editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
                             editor.putString(Config.EMAIL_SHARED_PREF, email1);
 
-                            //Saving values to editor
                             editor.commit();
 
                             //Starting profile activity
@@ -117,8 +115,6 @@ public class Login extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         } else {
-                            //If the server response is not success
-                            //Displaying an error message on toast
                             Toast.makeText(Login.this, "Invalid username or password", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -132,16 +128,14 @@ public class Login extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                //Adding parameters to request
+
                 params.put(Config.KEY_EMAIL, email1);
                 params.put(Config.KEY_PASSWORD, password1);
 
-                //returning parameter
                 return params;
             }
         };
 
-        //Adding the string request to the queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
