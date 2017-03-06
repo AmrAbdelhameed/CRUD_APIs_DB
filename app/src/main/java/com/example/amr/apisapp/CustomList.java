@@ -40,10 +40,10 @@ public class CustomList extends ArrayAdapter<String> {
         TextView textViewEmail = (TextView) listViewItem.findViewById(R.id.textViewEmail);
         TextView textViewAge = (TextView) listViewItem.findViewById(R.id.textViewAge);
 
-        textViewId.setText("ID : "+ids[position]);
-        textViewName.setText("First Name : "+names[position]);
-        textViewEmail.setText("Last Name : "+emails[position]);
-        textViewAge.setText("Age : "+ages[position]);
+        textViewId.setText("ID : " + ids[position]);
+        textViewName.setText("First Name : " + names[position]);
+        textViewEmail.setText("Last Name : " + emails[position]);
+        textViewAge.setText("Age : " + ages[position]);
 
         return listViewItem;
     }

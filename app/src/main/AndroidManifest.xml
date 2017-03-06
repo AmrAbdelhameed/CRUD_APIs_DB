@@ -21,17 +21,19 @@
         </activity>
         <activity
             android:name=".Register"
-            android:label="Register Activity"></activity>
+            android:label="Register Activity" />
         <activity
             android:name=".MainActivity"
-            android:label="Show ALl Contacts"></activity>
+            android:label="Show ALl Contacts" />
         <activity
             android:name=".AddActivity"
             android:label="Add Contact" />
         <activity
             android:name=".DetailsActivity"
             android:label="Details of Contact" />
-        <activity android:name=".UpdateProfile"></activity>
+        <activity
+            android:name=".UpdateProfile"
+            android:label="Show My Profile" />
     </application>
 
 </manifest>
