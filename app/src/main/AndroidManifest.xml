@@ -34,7 +34,10 @@
         <activity
             android:name=".UpdateProfile"
             android:label="Show My Profile" />
-        <activity android:name=".Searching"></activity>
+        <activity
+            android:name=".Searching"
+            android:label="Search of Students" />
+
     </application>
 
 </manifest>
