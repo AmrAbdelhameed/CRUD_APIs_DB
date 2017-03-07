@@ -196,6 +196,14 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         }
+        if (a == R.id.item5) {
+
+            Intent intent = new Intent(getApplicationContext(), Searching.class);
+
+            startActivity(intent);
+
+            return true;
+        }
         if (a == R.id.item2) {
 
             logout();

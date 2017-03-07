@@ -34,6 +34,7 @@
         <activity
             android:name=".UpdateProfile"
             android:label="Show My Profile" />
+        <activity android:name=".Searching"></activity>
     </application>
 
 </manifest>

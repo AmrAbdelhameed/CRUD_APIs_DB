@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +25,10 @@ public class UpdateProfile extends AppCompatActivity {
 
     public static final String JSON_URL = "http://192.168.1.107/phpinandroid/datauser.php";
     TextView name;
-    String email;
+    Button update;
+    String email,id;
+    RequestQueue requestQueue;
+    String updateUrl = "http://192.168.1.107/phpinandroid/updateProfile.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,8 @@ public class UpdateProfile extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        name = (TextView) findViewById(R.id.editName);
+        name = (TextView) findViewById(R.id.editname);
+        update = (Button) findViewById(R.id.update);
 
         Intent in = getIntent();
         Bundle b = in.getExtras();
@@ -74,13 +80,59 @@ public class UpdateProfile extends AppCompatActivity {
         GetCurrentUserData pj = new GetCurrentUserData(json);
         pj.GetCurrentData();
 
-        name.setText(pj.idds[0]);
+        update.setVisibility(View.INVISIBLE);
+
+        id = pj.idds[0];
+
+        name.setText(pj.namees[0]);
+        name.setFocusable(false);
+        name.setClickable(false);
+        name.setCursorVisible(false);
+
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StringRequest request = new StringRequest(Request.Method.POST, updateUrl, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        System.out.println(response.toString());
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> parameters = new HashMap<String, String>();
+
+                        parameters.put("id", id);
+                        parameters.put("name", name.getText().toString());
+
+                        return parameters;
+                    }
+                };
+                requestQueue.add(request);
+
+                Toast.makeText(UpdateProfile.this, "Done", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+        });
+
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //
+        getMenuInflater().inflate(R.menu.main3, menu);
         return true;
     }
 
@@ -91,6 +143,15 @@ public class UpdateProfile extends AppCompatActivity {
         if (id == android.R.id.home) {
             finish();
             return true;
+        }
+        if (id == R.id.itemUp)
+        {
+            update.setVisibility(View.VISIBLE);
+
+            name.setEnabled(true);
+            name.setFocusableInTouchMode(true);
+            name.setClickable(true);
+            name.setCursorVisible(true);
         }
         return super.onOptionsItemSelected(item);
     }

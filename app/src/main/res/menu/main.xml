@@ -17,6 +17,11 @@
     </item>
 
     <item
+        android:id="@+id/item5"
+        android:title="Search">
+    </item>
+
+    <item
         android:id="@+id/item2"
         android:title="Logout">
     </item>
